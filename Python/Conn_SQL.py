@@ -20,5 +20,6 @@ cursor.execute('SELECT TOP (1000) [ProductKey],[ProductAlternateKey] FROM [Adven
 for row in cursor:
     print(f'row = {row}')
 
+#Fecha a Conexão
 conn.close()
 
