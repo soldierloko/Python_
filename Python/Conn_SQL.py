@@ -1,25 +1,23 @@
+# Importa as Bibliotecas
+import pandas as pd
+import pyodbc
 
-import pyodbc 
+# Biblioteca Personal Funções
+import func_py as fp
 
-#String de Conexão
-conn =  pyodbc.connect(
-    "Driver={SQL Server Native Client 11.0};"
-    "Server=DESKTOP-QRGC4CU\SQLEXPRESS;"
-    "Database=AdventureWorksDW2017;"
-    "Trusted_Connection=yes"
-)
+# Chama a Função de conexão ao SQL
+conn = fp.retornar_conexao_sql()
 
-#Cria um Cursor Com a conexão
-cursor = conn.cursor()
+# Armazena a Consulta
+sql = 'SELECT TOP (1000) [ProductKey],[ProductAlternateKey] FROM [AdventureWorksDW2017].[dbo].[DimProduct]'
 
-#Executa uma Query
-cursor.execute('SELECT TOP (1000) [ProductKey],[ProductAlternateKey] FROM [AdventureWorksDW2017].[dbo].[DimProduct]')
+# Executa a Consulta  
+sql_query = pd.read_sql(sql,conn)
 
+# Armazena a Consulta no DF (Precisa nomear os campos e colocar quantos campos tem a conmsulta - (index))
+df = pd.DataFrame(sql_query,columns = ['ProductKey','ProductAlternateKey'])
 
-#Percorre a Consulta (Mais valer colocar em um DataFranme)
-for row in cursor:
-    print(f'row = {row}')
+# Exibe a consulta
+print(df)
 
-#Fecha a Conexão
-conn.close()
 
