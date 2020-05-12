@@ -6,7 +6,7 @@ import pyodbc
 import func_py as fp
 
 # Chama a Função de conexão ao SQL
-conn = fp.retornar_conexao_sql()
+conn = fp.conexao_sql()
 
 # Armazena a Consulta
 sql = 'SELECT TOP (1000) [ProductKey],[ProductAlternateKey] FROM [AdventureWorksDW2017].[dbo].[DimProduct]'
