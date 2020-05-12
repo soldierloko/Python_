@@ -20,4 +20,5 @@ df = pd.DataFrame(sql_query,columns = ['ProductKey','ProductAlternateKey'])
 # Exibe a consulta
 print(df)
 
-
+#Fecha a conexao
+conn.close()
